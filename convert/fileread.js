@@ -110,7 +110,7 @@ function BinFileReader(fileURL){
 
 		req.open('GET', fileURL, false);
 
-		//XHR binary charset opt by Marcus Granado 2006 [http://mgran.blogspot.com] 
+		//XHR binary charset opt by Marcus Granado 2006 [http://mgran.blogspot.com]
 		req.overrideMimeType('text/plain; charset=x-user-defined');
 		req.send(null);
 
@@ -158,3 +158,5 @@ Function BinFileReaderImpl_IE_VBAjaxLoader(fileName)\n\
 	BinFileReaderImpl_IE_VBAjaxLoader=byteArray\n\
 End Function\n\
 </script>');
+
+module.exports = { BinFileReader };

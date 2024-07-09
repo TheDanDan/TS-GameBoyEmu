@@ -1,5 +1,6 @@
-TIMER = {
+const TIMER = {
   _div: 0,
+  _sdiv: 0,
   _tma: 0,
   _tima: 0,
   _tac: 0,
@@ -15,7 +16,7 @@ TIMER = {
     TIMER._clock.main = 0;
     TIMER._clock.sub = 0;
     TIMER._clock.div = 0;
-    LOG.out('TIMER', 'Reset.');
+    console.log("TIMER reset");
   },
 
   step: function() {
@@ -66,7 +67,7 @@ TIMER = {
     }
   },
 
-  rb: function(addr) {
+  rb: function(addr: number) {
     switch(addr)
     {
       case 0xFF04: return TIMER._div;
@@ -76,7 +77,7 @@ TIMER = {
     }
   },
 
-  wb: function(addr, val) {
+  wb: function(addr: number, val: number) {
     switch(addr)
     {
       case 0xFF04: TIMER._div = 0; break;
