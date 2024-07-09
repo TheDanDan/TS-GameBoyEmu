@@ -62,7 +62,7 @@ const MMU = {
         console.log('MMU', 'ROM loaded, ' + MMU._rom.length + ' bytes.');
     },
 
-    rb: function (addr: number) {
+    rb: function (addr: number): number {
         switch (addr & 0xF000) {
             // ROM bank 0
             case 0x0000:
@@ -134,6 +134,7 @@ const MMU = {
                         }
                 }
         }
+        return 0;
     },
 
     rw: function (addr: number) { return MMU.rb(addr) + (MMU.rb(addr + 1) << 8); },
@@ -154,11 +155,13 @@ const MMU = {
             case 0x2000: case 0x3000:
                 switch (MMU._carttype) {
                     case 1:
-                        MMU._mbc[1].rombank &= 0x60;
-                        val &= 0x1F;
-                        if (!val) val = 1;
-                        MMU._mbc[1].rombank |= val;
-                        MMU._romoffs = MMU._mbc[1].rombank * 0x4000;
+                        if (MMU._mbc[1].rombank) {
+                            MMU._mbc[1].rombank &= 0x60;
+                            val &= 0x1F;
+                            if (!val) val = 1;
+                            MMU._mbc[1].rombank |= val;
+                            MMU._romoffs = MMU._mbc[1].rombank * 0x4000;
+                        }
                         break;
                 }
                 break;
@@ -173,9 +176,11 @@ const MMU = {
                             MMU._ramoffs = MMU._mbc[1].rambank * 0x2000;
                         }
                         else {
-                            MMU._mbc[1].rombank &= 0x1F;
-                            MMU._mbc[1].rombank |= ((val & 3) << 5);
-                            MMU._romoffs = MMU._mbc[1].rombank * 0x4000;
+                            if (MMU._mbc[1].rombank) {
+                                MMU._mbc[1].rombank &= 0x1F;
+                                MMU._mbc[1].rombank |= ((val & 3) << 5);
+                                MMU._romoffs = MMU._mbc[1].rombank * 0x4000;
+                            }
                         }
                 }
                 break;
@@ -246,5 +251,5 @@ const MMU = {
         }
     },
 
-    ww: function (addr, val) { MMU.wb(addr, val & 255); MMU.wb(addr + 1, val >> 8); }
+    ww: function (addr: number, val: number) { MMU.wb(addr, val & 255); MMU.wb(addr + 1, val >> 8); }
 };

@@ -1,11 +1,11 @@
-KEY = {
+const KEY = {
   _keys: [0x0F,0x0F],
   _colidx: 0,
 
   reset: function() {
     KEY._keys = [0x0F,0x0F];
     KEY._colidx = 0;
-    LOG.out('KEY', 'Reset.');
+    console.log('KEY', 'Reset');
   },
 
   rb: function() {
@@ -18,11 +18,11 @@ KEY = {
     }
   },
 
-  wb: function(v) {
+  wb: function(v: number) {
     KEY._colidx = v&0x30;
   },
 
-  keydown: function(e) {
+  keydown: function(e: any) {
     switch(e.keyCode)
     {
       case 39: KEY._keys[1] &= 0xE; break;
@@ -36,7 +36,7 @@ KEY = {
     }
   },
 
-  keyup: function(e) {
+  keyup: function(e: any) {
     switch(e.keyCode)
     {
       case 39: KEY._keys[1] |= 0x1; break;

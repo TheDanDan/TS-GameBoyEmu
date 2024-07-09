@@ -1,4 +1,4 @@
-GPU = {
+const GPU = {
   _vram: [],
   _oam: [],
   _reg: [],
@@ -17,7 +17,7 @@ GPU = {
   _xscrl: 0,
   _raster: 0,
   _ints: 0,
-  
+
   _lcdon: 0,
   _bgon: 0,
   _objon: 0,
