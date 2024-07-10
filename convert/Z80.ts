@@ -29,7 +29,7 @@ const Z80 = {
     Z80._halt = 0; Z80._stop = 0;
     Z80._clock.m = 0;
     Z80._r.ime = 1;
-    LOG.out('Z80', 'Reset.');
+    console.log('Z80', 'Reset.');
   },
 
   exec: function () {
@@ -658,7 +658,7 @@ const Z80 = {
     }
   },
 
-  _map: [],
+  _map: [] as any[],
   _cbmap: []
 };
 

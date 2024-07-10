@@ -75,6 +75,7 @@ const TIMER = {
       case 0xFF06: return TIMER._tma;
       case 0xFF07: return TIMER._tac;
     }
+    return 0;
   },
 
   wb: function(addr: number, val: number) {
