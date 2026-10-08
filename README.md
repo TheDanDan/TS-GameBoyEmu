@@ -11,6 +11,12 @@ npm run dev
 
 `npm run build` creates the production site. `npm run lint` runs static checks, and `npm test` runs the emulator unit tests. GitHub Actions runs all three checks for pushes to `main` and pull requests.
 
+## GitHub Pages
+
+In the repository's **Settings → Pages**, set **Build and deployment → Source** to **GitHub Actions**. After this change reaches `main`, the CI workflow builds and deploys the site at [thedandan.github.io/TS-GameBoyEmu](https://thedandan.github.io/TS-GameBoyEmu/). It also supports a manual run from the Actions tab. Pull requests run the checks without deploying.
+
+The production Vite build uses `/TS-GameBoyEmu/` as its base path, while the local development server stays at `/`. If you rename the repository or use a custom domain, update the base path in `vite.config.ts`.
+
 ## Controls
 
 | Game Boy control | Keyboard | On-screen control |
